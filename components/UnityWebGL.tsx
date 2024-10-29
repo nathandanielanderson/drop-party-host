@@ -9,9 +9,29 @@ interface UnityWebGLProps {
   codeUrl: string;
 }
 
+interface UnityConfig {
+  dataUrl: string;
+  frameworkUrl: string;
+  codeUrl: string;
+  streamingAssetsUrl: string;
+  companyName: string;
+  productName: string;
+  productVersion: string;
+  devicePixelRatio: number;
+  matchWebGLToCanvasSize: boolean;
+  tabindex: number;
+}
+
+interface UnityInstance {
+  Quit: () => void;
+}
+
 declare global {
   interface Window {
-    createUnityInstance: any;
+    createUnityInstance: (
+      canvas: HTMLCanvasElement,
+      config: UnityConfig
+    ) => Promise<UnityInstance>;
   }
 }
 
@@ -57,10 +77,8 @@ export default function UnityWebGL({
                 companyName: 'Your Company',
                 productName: 'Your Product',
                 productVersion: '1.0',
-                // Add keyboard event handling configuration
                 devicePixelRatio: window.devicePixelRatio,
                 matchWebGLToCanvasSize: true,
-                // Ensure the canvas can receive keyboard focus
                 tabindex: 1,
               }
             );
@@ -102,9 +120,9 @@ export default function UnityWebGL({
     >
       <canvas
         ref={canvasRef}
-        id="unity-canvas" // Add a specific ID for Unity to target
+        id="unity-canvas"
         className="w-full h-full"
-        tabIndex={1} // Make the canvas focusable
+        tabIndex={1}
       />
     </div>
   );
