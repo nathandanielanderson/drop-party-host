@@ -17,9 +17,9 @@
 
 # Unity WebGL Build
 # Exclude large Unity build files - only keep the necessary ones
-/public/unity/Build/*.data
-/public/unity/Build/*.wasm
-/public/unity/Build/TemplateData
+# /public/unity/Build/*.data
+# /public/unity/Build/*.wasm
+# /public/unity/Build/TemplateData
 
 # Environment files
 .env
